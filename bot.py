@@ -13,17 +13,7 @@ bot = commands.Bot(command_prefix = ['*'], intents = discord.Intents.all())
 @bot.event
 async def on_ready():
     print(">>>Bot is online<<<")
-    
-@bot.event
-async def on_member_join(member):
-    channel = bot.get_channel(int(jdata['Welcome_channel']))
-    await channel.send(f'{member}join!')
-    
-@bot.event
-async def on_member_remove(member):
-    channel = bot.get_channel(int(jdata['Leave_channel']))
-    await channel.send(f'{member}leave!')
-    
+        
 @bot.command()
 async def load(ctx, extension):
     bot.load_extension(f'cmds.{extension}')
@@ -42,7 +32,6 @@ async def reload(ctx, extension):
 for filename in os.listdir('./cmds'):
      if filename.endswith('.py'):
          bot.load_extension(f'cmds.{filename[:-3]}')
-         
          
 if __name__ == "__main__":
     bot.run(jdata['TOKEN'])
